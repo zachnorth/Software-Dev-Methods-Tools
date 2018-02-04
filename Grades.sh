@@ -1,6 +1,11 @@
 #!/bin/bash
 #need to pass in StudentGrades.txt as a command line argument
-#tr -d 
+
+
+#variable to hol filename that is passed through command line
+fileName="$1"
+
+#declaring arrays and variables
 averageArray=()
 uniqueIDArray=()
 firstNameArray=()
@@ -9,6 +14,8 @@ gradeSum=0
 gradeAverage=0
 index=0
 
+#sorting the file in place by third column then second column 
+tac $fileName | sort -k 3,3 -k2,2 -s $fileName -o $fileName
 #read in file and parse each line into variables
 while read -r uniqueID firstName lastName scoreOne scoreTwo scoreThree; do
   #printf "Line Count: %s\n" $lineCount
@@ -32,9 +39,12 @@ while read -r uniqueID firstName lastName scoreOne scoreTwo scoreThree; do
 #end of while loop
 done < <(tr -d '\r' < "$1")
 
-#now the arrays should be populated so you need to rebuild the strings into the 
-#desired output format and 
+printIndex=0
+for value in "${averageArray[*]}"; do
 
+  printf '%s [%s] %s, %s\n' "${averageArray[$printIndex} ${uniqueIDArray[$printIndex]} ${lastNameArray[$printIndex]} ${firstNameArray[$printIndex]}" 
+  printIndex=$((printIndex + 1))
+done
 #printf 'Now printing array: %s\n' "${uniqueIDArray[0]}"
 echo ${lastNameArray[@]}
 echo ${firstNameArray[@]}
