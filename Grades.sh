@@ -39,6 +39,7 @@ while read -r uniqueID firstName lastName scoreOne scoreTwo scoreThree; do
   #index=$(($index + 1))
 #end of while loop
 done < <(tr -d '\r' < "$1")
+
 fi
 #Output Format
 #averageScore [uniqueID] lastNameArray, firstName
