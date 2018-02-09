@@ -32,5 +32,5 @@ else
 	grep 'geocities.com$' $fileName | wc -l
 
 	# 8. How many email addresses are in ‘first.last’ name format and involve someone who’s first name starts with a letter in the first half of the alphabet? Answer = 333
-	grep -E -o "^[a-mA-M]+[a-zA-Z]+\.[a-zA-Z]+@[a-zA-Z]+\.[a-zA-Z]+\b" $fileName | wc -l
+	grep -E -o "^[a-mA-M][a-zA-Z]*\.[a-zA-Z]+@.*" $fileName | wc -l
 fi
